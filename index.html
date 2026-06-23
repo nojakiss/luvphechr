@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUVPHECHR ❤️</title>
+<title>LIVPHECHR</title>
 
 <style>
 *{
@@ -15,80 +15,144 @@
 body{
     height:100vh;
     overflow:hidden;
+    background:#050005;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#ff9ecf,#ff4f9a);
-    font-family:Arial,sans-serif;
+    font-family:Arial, sans-serif;
 }
 
-h1{
-    color:white;
-    font-size:clamp(3rem,10vw,8rem);
-    text-shadow:0 0 20px rgba(255,255,255,.8);
-    animation: glow 2s ease-in-out infinite alternate;
-    z-index:10;
+.text{
+    color:#ff4fa3;
+    font-size:5vw;
+    font-weight:bold;
+    letter-spacing:10px;
+    animation:
+    pop 2s ease forwards,
+    blackhole 4s ease 2.5s forwards;
+    text-shadow:0 0 20px #ff1493;
 }
 
-@keyframes glow{
-    from{
-        transform:scale(1);
-        text-shadow:0 0 15px white;
-    }
-    to{
-        transform:scale(1.08);
-        text-shadow:0 0 40px white;
-    }
-}
+@keyframes pop{
 
-.heart{
-    position:absolute;
-    color:#fff;
-    animation: floatUp linear forwards;
-    user-select:none;
-}
-
-@keyframes floatUp{
     0%{
-        transform:translateY(0) scale(0.5);
+        transform:scale(0);
+        opacity:0;
+    }
+
+    50%{
+        transform:scale(1.2);
+    }
+
+    100%{
+        transform:scale(1);
         opacity:1;
     }
+}
+
+
+@keyframes blackhole{
+
+    0%{
+        transform:scale(1);
+    }
+
     100%{
-        transform:translateY(-120vh) scale(1.8);
+        transform:scale(20);
         opacity:0;
     }
 }
+
+
+.final{
+    position:absolute;
+    color:#ff69b4;
+    font-size:15vw;
+    font-weight:bold;
+    opacity:0;
+    animation:
+    appear 1s ease 6s forwards;
+    text-shadow:
+    0 0 30px pink;
+}
+
+
+@keyframes appear{
+
+    to{
+        opacity:1;
+    }
+}
+
+
+.heart{
+    position:absolute;
+    color:#ff5ca8;
+    font-size:20px;
+    opacity:0;
+
+    animation:
+    hearts 2s ease 7s forwards;
+
+}
+
+
+@keyframes hearts{
+
+    to{
+        opacity:1;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<h1>LUVPHECHR ❤️</h1>
+
+<div class="text">
+LIVPHECHR
+</div>
+
+
+<div class="final">
+LIVPHECHR
+</div>
+
+
 
 <script>
-function createHeart(){
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
 
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.bottom = "-30px";
+let symbols = [
+"♥","♡","♥","♡"
+];
 
-    const size = Math.random() * 30 + 15;
-    heart.style.fontSize = size + "px";
 
-    const duration = Math.random() * 4 + 4;
-    heart.style.animationDuration = duration + "s";
+for(let i=0;i<120;i++){
 
-    document.body.appendChild(heart);
+    let h=document.createElement("div");
 
-    setTimeout(()=>{
-        heart.remove();
-    }, duration * 1000);
+    h.className="heart";
+
+    h.innerHTML=symbols[
+        Math.floor(Math.random()*symbols.length)
+    ];
+
+    h.style.left=Math.random()*100+"vw";
+    h.style.top=Math.random()*100+"vh";
+
+    h.style.fontSize=
+    (10+Math.random()*35)+"px";
+
+    document.body.appendChild(h);
+
 }
 
-setInterval(createHeart, 250);
 </script>
+
 
 </body>
 </html>
